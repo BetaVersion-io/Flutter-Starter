@@ -1,0 +1,102 @@
+name: Create GitHub Release
+
+on:
+  workflow_call:
+    inputs:
+      release_name:
+        required: false
+        type: string
+        description: "Release name (defaults to tag name)"
+      release_body:
+        required: false
+        type: string
+        description: "Release description/notes"
+      include_production_apk:
+        required: false
+        type: boolean
+        default: true
+        description: "Include production APK in release"
+      include_production_aab:
+        required: false
+        type: boolean
+        default: true
+        description: "Include production AAB in release"
+      include_staging_apk:
+        required: false
+        type: boolean
+        default: false
+        description: "Include staging APK in release"
+      include_staging_aab:
+        required: false
+        type: boolean
+        default: false
+        description: "Include staging AAB in release"
+      draft:
+        required: false
+        type: boolean
+        default: false
+        description: "Create as draft release"
+      prerelease:
+        required: false
+        type: boolean
+        default: false
+        description: "Mark as pre-release"
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      # 2️⃣ Download Production APK (if enabled)
+      - name: Download Production APK
+        if: ${{ inputs.include_production_apk }}
+        uses: actions/download-artifact@v4
+        with:
+          name: production-release-apk
+          path: artifacts/
+        continue-on-error: true
+
+      # 3️⃣ Download Production AAB (if enabled)
+      - name: Download Production AAB
+        if: ${{ inputs.include_production_aab }}
+        uses: actions/download-artifact@v4
+        with:
+          name: production-release-aab
+          path: artifacts/
+        continue-on-error: true
+
+      # 4️⃣ Download Staging APK (if enabled)
+      - name: Download Staging APK
+        if: ${{ inputs.include_staging_apk }}
+        uses: actions/download-artifact@v4
+        with:
+          name: staging-release-apk
+          path: artifacts/
+        continue-on-error: true
+
+      # 5️⃣ Download Staging AAB (if enabled)
+      - name: Download Staging AAB
+        if: ${{ inputs.include_staging_aab }}
+        uses: actions/download-artifact@v4
+        with:
+          name: staging-release-aab
+          path: artifacts/
+        continue-on-error: true
+
+      # 6️⃣ Create GitHub Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ inputs.release_name || github.ref_name }}
+          body: ${{ inputs.release_body }}
+          draft: ${{ inputs.draft }}
+          prerelease: ${{ inputs.prerelease }}
+          files: artifacts/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

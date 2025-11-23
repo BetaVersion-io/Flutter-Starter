@@ -1,0 +1,110 @@
+{
+  "HookWidget": {
+    "prefix": "hkw",
+    "body": [
+      "class ${1:WidgetName} extends HookWidget {",
+      "  const ${1:WidgetName}({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    $2",
+      "    return ${3:Container()};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a HookWidget"
+  },
+  "HookConsumerWidget": {
+    "prefix": "hkcw",
+    "body": [
+      "class ${1:WidgetName} extends HookConsumerWidget {",
+      "  const ${1:WidgetName}({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context, WidgetRef ref) {",
+      "    $2",
+      "    return ${3:Container()};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a HookConsumerWidget"
+  },
+  "StatelessWidget": {
+    "prefix": "stless",
+    "body": [
+      "class ${1:WidgetName} extends StatelessWidget {",
+      "  const ${1:WidgetName}({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${2:Container()};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a StatelessWidget"
+  },
+  "StatefulWidget": {
+    "prefix": "stful",
+    "body": [
+      "class ${1:WidgetName} extends StatefulWidget {",
+      "  const ${1:WidgetName}({super.key});",
+      "",
+      "  @override",
+      "  State<${1:WidgetName}> createState() => _${1:WidgetName}State();",
+      "}",
+      "",
+      "class _${1:WidgetName}State extends State<${1:WidgetName}> {",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${2:Container()};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a StatefulWidget"
+  },
+  "ConsumerWidget": {
+    "prefix": "consumerwidget",
+    "body": [
+      "class ${1:WidgetName} extends ConsumerWidget {",
+      "  const ${1:WidgetName}({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context, WidgetRef ref) {",
+      "    return ${2:Container()};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a ConsumerWidget"
+  },
+  "useState": {
+    "prefix": "usestate",
+    "body": ["final ${1:stateName} = useState<${2:Type}>(${3:initialValue});"],
+    "description": "Create a useState hook"
+  },
+  "useEffect": {
+    "prefix": "useeffect",
+    "body": [
+      "useEffect(() {",
+      "  $1",
+      "  return ${2:null};",
+      "}, [${3:dependencies}]);"
+    ],
+    "description": "Create a useEffect hook"
+  },
+  "useMemoized": {
+    "prefix": "usememoized",
+    "body": [
+      "final ${1:memoizedValue} = useMemoized(() => ${2:computation}, [${3:dependencies}]);"
+    ],
+    "description": "Create a useMemoized hook"
+  },
+  "useCallback": {
+    "prefix": "usecallback",
+    "body": [
+      "final ${1:callbackName} = useCallback(() {",
+      "  $2",
+      "}, [${3:dependencies}]);"
+    ],
+    "description": "Create a useCallback hook"
+  }
+}

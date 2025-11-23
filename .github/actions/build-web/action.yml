@@ -1,0 +1,55 @@
+name: 'Build Web App'
+description: 'Build Flutter web app for specified flavor'
+
+inputs:
+  flavor:
+    description: 'Build flavor (staging or production)'
+    required: true
+  source_maps:
+    description: 'Whether to generate source maps (for debugging)'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build ${{ inputs.flavor }} Web
+      shell: bash
+      run: |
+        # Read .env file and convert to --dart-define flags
+        ENV_FILE=".env"
+        if [ "${{ inputs.flavor }}" = "staging" ]; then
+          ENV_FILE=".env.staging"
+        elif [ "${{ inputs.flavor }}" = "production" ]; then
+          ENV_FILE=".env.production"
+        fi
+
+        # Convert .env to dart-define flags
+        DART_DEFINES=""
+        if [ -f "$ENV_FILE" ]; then
+          while IFS='=' read -r key value || [ -n "$key" ]; do
+            # Skip comments and empty lines
+            if [[ ! "$key" =~ ^#.*$ ]] && [ -n "$key" ]; then
+              # Remove quotes and trim whitespace
+              value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//")
+              DART_DEFINES="$DART_DEFINES --dart-define=$key=$value"
+            fi
+          done < "$ENV_FILE"
+        fi
+
+        # Build web with environment variables
+        flutter build web \
+          --dart-define=FLAVOR=${{ inputs.flavor }} \
+          --dart-define=ENVIRONMENT=${{ inputs.flavor }} \
+          $DART_DEFINES \
+          --release \
+          --no-tree-shake-icons \
+          ${{ inputs.source_maps == 'true' && '--source-maps' || '' }}
+        echo "✅ Web build completed for ${{ inputs.flavor }}"
+
+    - name: Upload ${{ inputs.flavor }} Web Build
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.flavor }}-web-build
+        path: build/web/
+        retention-days: 30

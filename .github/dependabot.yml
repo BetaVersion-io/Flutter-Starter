@@ -1,0 +1,81 @@
+# # Dependabot configuration
+# # Learn more: https://docs.github.com/en/code-security/dependabot
+
+# version: 2
+# updates:
+#   # GitHub Actions
+#   - package-ecosystem: "github-actions"
+#     directory: "/"
+#     schedule:
+#       interval: "weekly"
+#       day: "monday"
+#       time: "09:00"
+#       timezone: "Asia/Kolkata"
+#     open-pull-requests-limit: 5
+#     labels:
+#       - "dependencies"
+#       - "github-actions"
+#     reviewers:
+#       - "betaversionio/devops-team"
+#     commit-message:
+#       prefix: "ci"
+#       include: "scope"
+
+#   # Pub dependencies (Flutter/Dart)
+#   - package-ecosystem: "pub"
+#     directory: "/"
+#     schedule:
+#       interval: "weekly"
+#       day: "monday"
+#       time: "10:00"
+#       timezone: "Asia/Kolkata"
+#     open-pull-requests-limit: 10
+#     labels:
+#       - "dependencies"
+#       - "flutter"
+#     reviewers:
+#       - "betaversionio/core-team"
+#     commit-message:
+#       prefix: "build"
+#       include: "scope"
+#     # Allow both direct and indirect updates
+#     allow:
+#       - dependency-type: "all"
+#     # Group updates by type
+#     groups:
+#       flutter-packages:
+#         patterns:
+#           - "flutter*"
+#       dev-dependencies:
+#         dependency-type: "development"
+#         update-types:
+#           - "minor"
+#           - "patch"
+#       production-dependencies:
+#         dependency-type: "production"
+#         update-types:
+#           - "patch"
+
+#   # Android Gradle dependencies
+#   - package-ecosystem: "gradle"
+#     directory: "/android"
+#     schedule:
+#       interval: "weekly"
+#       day: "tuesday"
+#       time: "10:00"
+#       timezone: "Asia/Kolkata"
+#     open-pull-requests-limit: 5
+#     labels:
+#       - "dependencies"
+#       - "android"
+#     reviewers:
+#       - "betaversionio/mobile-team"
+#     commit-message:
+#       prefix: "build"
+#       include: "scope"
+# # Configuration notes:
+# # - Updates are checked weekly on specified days
+# # - Limited number of open PRs to avoid overwhelming the team
+# # - Automated labels and reviewers assigned
+# # - Semantic commit messages
+# # - Time is set to IST (Asia/Kolkata)

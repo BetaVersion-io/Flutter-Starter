@@ -1,0 +1,107 @@
+# Labeler configuration
+# Automatically labels PRs based on file changes
+
+# Feature labels
+'feature:auth':
+  - 'lib/features/auth/**/*'
+
+'feature:profile':
+  - 'lib/features/profile/**/*'
+
+'feature:qbank':
+  - 'lib/features/question_bank/**/*'
+  - 'lib/features/qbank/**/*'
+
+'feature:test':
+  - 'lib/features/test/**/*'
+
+# Component labels
+'component:ui':
+  - 'lib/core/ui/**/*'
+  - 'lib/shared/widgets/**/*'
+  - '**/*.ui.dart'
+
+'component:api':
+  - 'lib/core/network/**/*'
+  - 'lib/core/api/**/*'
+  - '**/*_api.dart'
+
+'component:database':
+  - 'lib/core/database/**/*'
+  - 'lib/core/storage/**/*'
+
+# Platform labels
+'platform:android':
+  - 'android/**/*'
+
+'platform:ios':
+  - 'ios/**/*'
+
+'platform:web':
+  - 'web/**/*'
+
+# Type labels
+'type:documentation':
+  - '**/*.md'
+  - 'docs/**/*'
+
+'type:testing':
+  - 'test/**/*'
+  - '**/*_test.dart'
+  - '**/test_*.dart'
+
+'type:ci/cd':
+  - '.github/workflows/**/*'
+  - '.github/actions/**/*'
+
+'type:configuration':
+  - 'pubspec.yaml'
+  - 'analysis_options.yaml'
+  - '.vscode/**/*'
+  - '.github/**/*.yml'
+  - '.github/**/*.yaml'
+  - '.editorconfig'
+  - '.gitignore'
+  - '.gitattributes'
+
+'type:dependencies':
+  - 'pubspec.yaml'
+  - 'pubspec.lock'
+  - 'android/build.gradle'
+  - 'ios/Podfile'
+
+# Size labels (these are automatically added by GitHub based on lines changed)
+# But you can define custom rules
+
+'size:XS':
+  - changed-files:
+    - count: 1-5
+
+'size:S':
+  - changed-files:
+    - count: 6-20
+
+'size:M':
+  - changed-files:
+    - count: 21-50
+
+'size:L':
+  - changed-files:
+    - count: 51-100
+
+'size:XL':
+  - changed-files:
+    - count: 101+
+
+# Priority labels based on file criticality
+'priority:high':
+  - 'lib/core/network/**/*'
+  - 'lib/core/auth/**/*'
+  - 'lib/features/auth/**/*'
+  - '.github/workflows/**/*'
+
+# Generated code
+'auto-generated':
+  - '**/*.g.dart'
+  - '**/*.freezed.dart'
+  - '**/*.mocks.dart'

@@ -1,0 +1,5 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-staging.xcconfig"
+#include "Generated.xcconfig"
+#include? "Environment.xcconfig"
+FLAVOR=staging
+DART_DEFINES=$(inherited),RU5WSVJPTk1FTlQ9c3RhZ2luZw==

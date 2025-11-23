@@ -1,0 +1,386 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🏗️ Build Dev APK",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "apk",
+        "--flavor",
+        "development",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development",
+        "--debug"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📦 Build Staging APK",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "apk",
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging",
+        "--release"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🚀 Build Production APK",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "apk",
+        "--flavor",
+        "production",
+        "--dart-define=FLAVOR=production",
+        "--dart-define=ENVIRONMENT=production",
+        "--release",
+        "--obfuscate",
+        "--split-debug-info=build/debug-info"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📱 Build Production AAB",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "appbundle",
+        "--flavor",
+        "production",
+        "--dart-define=FLAVOR=production",
+        "--dart-define=ENVIRONMENT=production",
+        "--release",
+        "--obfuscate",
+        "--split-debug-info=build/debug-info"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📦 Build Staging AAB",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "appbundle",
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging",
+        "--release"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🏗️ Build Dev AAB",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "appbundle",
+        "--flavor",
+        "development",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development",
+        "--debug"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🍎 Build iOS Dev",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "ios",
+        "--flavor",
+        "development",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development",
+        "--debug"
+      ],
+      "group": "build"
+    },
+    {
+      "label": "🍎 Build iOS Production",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "ios",
+        "--flavor",
+        "production",
+        "--dart-define=FLAVOR=production",
+        "--dart-define=ENVIRONMENT=production",
+        "--release"
+      ],
+      "group": "build"
+    },
+    {
+      "label": "🌐 Build Web Dev",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "web",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development",
+        "--no-tree-shake-icons",
+        "--source-maps"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🌐 Build Web Staging",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "web",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging",
+        "--no-tree-shake-icons",
+        "--release"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🌐 Build Web Production",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "web",
+        "--dart-define=FLAVOR=production",
+        "--dart-define=ENVIRONMENT=production",
+        "--no-tree-shake-icons",
+        "--release"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🧹 Clean Build",
+      "type": "shell",
+      "command": "flutter",
+      "args": ["clean"],
+      "group": "build"
+    },
+    {
+      "label": "📥 Get Dependencies",
+      "type": "shell",
+      "command": "flutter",
+      "args": ["pub", "get"],
+      "group": "build"
+    },
+    {
+      "label": "🎨 Format Code",
+      "type": "shell",
+      "command": "dart",
+      "args": ["format", "lib/"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "⚙️ Generate Code (Build Runner)",
+      "type": "shell",
+      "command": "dart",
+      "args": ["run", "build_runner", "build", "--delete-conflicting-outputs"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "👁️ Watch Code Generation (Build Runner)",
+      "type": "shell",
+      "command": "dart",
+      "args": ["run", "build_runner", "watch", "--delete-conflicting-outputs"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🧹 Clean Generated Code",
+      "type": "shell",
+      "command": "dart",
+      "args": ["run", "build_runner", "clean"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📱 Connect ADB Wireless (Auto IP)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.vscode\\scripts\\connect_adb_auto.bat",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📱 Connect ADB Wireless (Manual IP)",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "echo Connecting to ${input:deviceIP}... && adb tcpip 5555 && timeout /t 4 /nobreak >nul && adb connect ${input:deviceIP}:5555 && echo. && echo Connected devices: && adb devices"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔍 Show Device Network Info",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.vscode\\scripts\\show_network_info.bat",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔌 Disconnect ADB Wireless",
+      "type": "shell",
+      "command": "adb disconnect",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 Flutter Run (Wireless)",
+      "dependsOn": ["📱 Connect ADB Wireless (Auto IP)"],
+      "dependsOrder": "sequence",
+      "type": "shell",
+      "command": "flutter run",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 Publish Release",
+      "type": "process",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/.vscode/scripts/publish.ps1"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      },
+      "detail": "Push the current branch and release tag to origin to trigger the GitHub publish workflow.",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "deviceIP",
+      "type": "promptString",
+      "description": "Enter device IP address",
+      "default": "192.168.1.100"
+    }
+  ]
+}

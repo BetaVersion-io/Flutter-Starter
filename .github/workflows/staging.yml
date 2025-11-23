@@ -1,0 +1,28 @@
+name: Staging Build
+
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  pipeline:
+    name: Staging Pipeline
+    uses: ./.github/workflows/build-deploy-pipeline.yml
+    with:
+      build_staging: true
+      build_apk: false
+      build_aab: false
+      build_web: true
+      deploy_to_play_store: false
+      deploy_to_github_pages: true
+      play_store_track: internal
+      play_store_status: completed
+      create_github_release: false
+    secrets: inherit

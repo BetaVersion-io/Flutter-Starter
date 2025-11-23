@@ -1,0 +1,171 @@
+name: Build & Deploy Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      build_staging:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to build staging flavor"
+      build_apk:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to build APK"
+      build_aab:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to build AAB"
+      build_web:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to build web app"
+      deploy_to_play_store:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to deploy to Google Play Store"
+      deploy_to_github_pages:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to deploy staging web to GitHub Pages"
+      play_store_track:
+        required: false
+        type: string
+        default: "internal"
+        description: "Play Store track (internal, alpha, beta, production)"
+      play_store_status:
+        required: false
+        type: string
+        default: "completed"
+        description: "Play Store release status"
+      update_priority:
+        required: false
+        type: number
+        default: 2
+        description: "In-app update priority (0-5)"
+      create_github_release:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to create GitHub release"
+      include_production_apk:
+        required: false
+        type: boolean
+        default: true
+        description: "Include production APK in GitHub release"
+      include_production_aab:
+        required: false
+        type: boolean
+        default: true
+        description: "Include production AAB in GitHub release"
+      include_staging_apk:
+        required: false
+        type: boolean
+        default: true
+        description: "Include staging APK in GitHub release"
+      include_staging_aab:
+        required: false
+        type: boolean
+        default: true
+        description: "Include staging AAB in GitHub release"
+    secrets:
+      ENV_FILE:
+        required: true
+      KEYSTORE_PASSWORD:
+        required: true
+      KEY_PASSWORD:
+        required: true
+      KEY_ALIAS:
+        required: true
+      KEYSTORE_BASE64:
+        required: true
+      PLAY_STORE_SERVICE_ACCOUNT_JSON:
+        required: false
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      # Setup Android environment
+      - name: Setup Android Environment
+        uses: ./.github/actions/setup-android
+        with:
+          env_file: ${{ secrets.ENV_FILE }}
+          keystore_password: ${{ secrets.KEYSTORE_PASSWORD }}
+          key_password: ${{ secrets.KEY_PASSWORD }}
+          key_alias: ${{ secrets.KEY_ALIAS }}
+          keystore_base64: ${{ secrets.KEYSTORE_BASE64 }}
+
+      # Build staging (if enabled)
+      - name: Build Staging
+        if: ${{ inputs.build_staging }}
+        uses: ./.github/actions/build-android
+        with:
+          flavor: staging
+          build_apk: ${{ inputs.build_apk }}
+          build_aab: ${{ inputs.build_aab }}
+          obfuscate: "false"
+
+      # Build production
+      - name: Build Production
+        uses: ./.github/actions/build-android
+        with:
+          flavor: production
+          build_apk: ${{ inputs.build_apk }}
+          build_aab: ${{ inputs.build_aab }}
+          obfuscate: "true"
+
+      # Build staging web (if enabled)
+      - name: Build Staging Web
+        if: ${{ inputs.build_web && inputs.build_staging }}
+        uses: ./.github/actions/build-web
+        with:
+          flavor: staging
+
+      # Build production web (if enabled)
+      - name: Build Production Web
+        if: ${{ inputs.build_web }}
+        uses: ./.github/actions/build-web
+        with:
+          flavor: production
+
+      # Deploy to Google Play Store (if enabled)
+      - name: Deploy to Google Play
+        if: ${{ inputs.deploy_to_play_store }}
+        uses: ./.github/actions/deploy-android
+        with:
+          service_account_json: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
+          track: ${{ inputs.play_store_track }}
+          status: ${{ inputs.play_store_status }}
+          update_priority: ${{ inputs.update_priority }}
+
+      # Deploy staging web to GitHub Pages (if enabled)
+      - name: Deploy Staging to GitHub Pages
+        if: ${{ inputs.deploy_to_github_pages && inputs.build_staging && inputs.build_web }}
+        uses: ./.github/actions/deploy-web
+        with:
+          artifact_name: staging-web-build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # GitHub Release (separate job since it needs artifacts)
+  release:
+    name: Create GitHub Release
+    if: ${{ inputs.create_github_release }}
+    needs: build-and-deploy
+    uses: ./.github/workflows/_release-github.yml
+    with:
+      include_production_apk: ${{ inputs.include_production_apk }}
+      include_production_aab: ${{ inputs.include_production_aab }}
+      include_staging_apk: ${{ inputs.include_staging_apk }}
+      include_staging_aab: ${{ inputs.include_staging_aab }}

@@ -1,0 +1,5 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-production.xcconfig"
+#include "Generated.xcconfig"
+#include? "Environment.xcconfig"
+FLAVOR=production
+DART_DEFINES=$(inherited),RU5WSVJPTk1FTlQ9cHJvZHVjdGlvbg==

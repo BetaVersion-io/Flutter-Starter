@@ -1,0 +1,58 @@
+name: 'Build Android App'
+description: 'Build Android APK and/or AAB for specified flavor'
+
+inputs:
+  flavor:
+    description: 'Build flavor (staging or production)'
+    required: true
+  build_apk:
+    description: 'Whether to build APK'
+    required: false
+    default: 'true'
+  build_aab:
+    description: 'Whether to build AAB'
+    required: false
+    default: 'true'
+  obfuscate:
+    description: 'Whether to obfuscate code'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build ${{ inputs.flavor }} APK
+      if: ${{ inputs.build_apk == 'true' }}
+      shell: bash
+      run: |
+        flutter build apk \
+          --flavor ${{ inputs.flavor }} \
+          --dart-define=FLAVOR=${{ inputs.flavor }} \
+          --dart-define=ENVIRONMENT=${{ inputs.flavor }} \
+          --release \
+          ${{ inputs.obfuscate == 'true' && '--obfuscate --split-debug-info=build/debug-info' || '' }}
+
+    - name: Build ${{ inputs.flavor }} AAB
+      if: ${{ inputs.build_aab == 'true' }}
+      shell: bash
+      run: |
+        flutter build appbundle \
+          --flavor ${{ inputs.flavor }} \
+          --dart-define=FLAVOR=${{ inputs.flavor }} \
+          --dart-define=ENVIRONMENT=${{ inputs.flavor }} \
+          --release \
+          ${{ inputs.obfuscate == 'true' && '--obfuscate --split-debug-info=build/debug-info' || '' }}
+
+    - name: Upload ${{ inputs.flavor }} APK
+      if: ${{ inputs.build_apk == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.flavor }}-release-apk
+        path: build/app/outputs/flutter-apk/app-${{ inputs.flavor }}-release.apk
+
+    - name: Upload ${{ inputs.flavor }} AAB
+      if: ${{ inputs.build_aab == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.flavor }}-release-aab
+        path: build/app/outputs/bundle/${{ inputs.flavor }}Release/app-${{ inputs.flavor }}-release.aab

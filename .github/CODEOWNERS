@@ -1,0 +1,51 @@
+# Code Owners
+#
+# This file defines code owners for the repository.
+# Code owners are automatically requested for review when someone opens a pull request
+# that modifies code that they own.
+#
+# Learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @betaversionio/core-team
+
+# GitHub Actions and CI/CD
+/.github/ @betaversionio/devops-team
+/.github/workflows/ @betaversionio/devops-team
+
+# Core functionality
+/lib/core/ @betaversionio/core-team
+/lib/core/common/ @betaversionio/core-team
+/lib/core/network/ @betaversionio/backend-team
+
+# Features - assign to respective feature teams
+/lib/features/auth/ @betaversionio/auth-team
+/lib/features/profile/ @betaversionio/profile-team
+/lib/features/question_bank/ @betaversionio/content-team
+/lib/features/test/ @betaversionio/content-team
+
+# Configuration files
+/android/ @betaversionio/mobile-team
+/ios/ @betaversionio/mobile-team
+pubspec.yaml @betaversionio/core-team
+analysis_options.yaml @betaversionio/core-team
+
+# Documentation
+*.md @betaversionio/docs-team
+/docs/ @betaversionio/docs-team
+
+# Environment and secrets
+.env* @betaversionio/devops-team
+*.keystore @betaversionio/devops-team
+
+# Testing
+/test/ @betaversionio/qa-team
+*_test.dart @betaversionio/qa-team
+
+# Assets
+/assets/ @betaversionio/design-team
+
+# Note: Replace @betaversionio/team-name with actual GitHub usernames or teams
+# Example:
+# * @username1 @username2
+# /lib/features/auth/ @auth-lead @security-engineer

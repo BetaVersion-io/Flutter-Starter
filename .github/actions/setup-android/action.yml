@@ -1,0 +1,53 @@
+name: "Setup Android Environment"
+description: "Setup Flutter, Android signing, and dependencies"
+
+inputs:
+  env_file:
+    description: "Environment file contents"
+    required: true
+  keystore_password:
+    description: "Keystore password"
+    required: true
+  key_password:
+    description: "Key password"
+    required: true
+  key_alias:
+    description: "Key alias"
+    required: true
+  keystore_base64:
+    description: "Base64 encoded keystore"
+    required: true
+  flutter_version:
+    description: "Flutter version to install"
+    required: false
+    default: "3.35.5"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ inputs.flutter_version }}
+        channel: "stable"
+
+    - name: Create .env files
+      shell: bash
+      run: |
+        echo "${{ inputs.env_file }}" > .env
+        echo "${{ inputs.env_file }}" > .env.production
+        echo "✅ .env and .env.production created"
+
+    - name: Setup Android signing
+      shell: bash
+      run: |
+        echo "storePassword=${{ inputs.keystore_password }}" > android/key.properties
+        echo "keyPassword=${{ inputs.key_password }}" >> android/key.properties
+        echo "keyAlias=${{ inputs.key_alias }}" >> android/key.properties
+        echo "storeFile=BetaVersion.jks" >> android/key.properties
+        echo "${{ inputs.keystore_base64 }}" | base64 --decode > android/app/BetaVersion.jks
+        echo "✅ Android signing configured"
+
+    - name: Install Dependencies
+      shell: bash
+      run: flutter pub get

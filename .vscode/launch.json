@@ -1,0 +1,83 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🟢 Development Flavor",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development"
+      ]
+    },
+    {
+      "name": "🟡 Staging Flavor",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging"
+      ]
+    },
+    {
+      "name": "🟡 Staging (Windows Emulator)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging",
+        "--target=lib/main.dart"
+      ]
+    },
+    {
+      "name": "🔵 Production Flavor",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "production",
+        "--dart-define=FLAVOR=production",
+        "--dart-define=ENVIRONMENT=production"
+      ]
+    },
+    {
+      "name": "🟢 Dev (Quick Run)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development"
+      ]
+    },
+    {
+      "name": "🔥 Staging (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging",
+        "--dart-define=ENVIRONMENT=staging"
+      ]
+    },
+    {
+      "name": "🌐 Dev (Web)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define=FLAVOR=development",
+        "--dart-define=ENVIRONMENT=development"
+      ],
+      "deviceId": "chrome"
+    }
+  ]
+}

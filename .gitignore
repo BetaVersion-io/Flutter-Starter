@@ -1,0 +1,89 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+/.claude/
+.history
+.svn/
+.env
+.env.production
+.claude/
+.swiftpm/
+migrate_working_dir/
+service_account.json
+.vscode/.forwarder.pid
+.vscode/.forwarder.log
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/Environment.xcconfig
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Keystore files - NEVER commit these!
+*.jks
+*.keystore
+key.properties
+keystore-base64.txt
+
+# Firebase Service Account Key (DO NOT COMMIT)
+firebase-service-account.json
+
+# License reports (generated)
+LICENSES_REPORT.txt
+licenses.json
+
+# Environment files (DO NOT COMMIT)
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+temp/
+
+# Coverage reports
+coverage/
+.coverage
+*.lcov
+
+# IDE specific
+.vscode/settings.local.json
+.idea/workspace.xml
+.idea/tasks.xml

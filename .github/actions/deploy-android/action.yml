@@ -1,0 +1,40 @@
+name: 'Deploy Android to Google Play'
+description: 'Deploy Android AAB to Google Play Store'
+
+inputs:
+  service_account_json:
+    description: 'Google Play Service Account JSON'
+    required: true
+  track:
+    description: 'Release track (internal, alpha, beta, production)'
+    required: false
+    default: 'internal'
+  status:
+    description: 'Release status (completed, draft, halted, inProgress)'
+    required: false
+    default: 'completed'
+  update_priority:
+    description: 'In-app update priority (0-5)'
+    required: false
+    default: '2'
+  aab_path:
+    description: 'Path to the AAB file to deploy'
+    required: false
+    default: 'build/app/outputs/bundle/productionRelease/app-production-release.aab'
+  package_name:
+    description: 'Android package name'
+    required: false
+    default: 'com.n_prep.medieducation'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Deploy to Google Play (${{ inputs.track }})
+      uses: r0adkll/upload-google-play@v1
+      with:
+        serviceAccountJsonPlainText: ${{ inputs.service_account_json }}
+        packageName: ${{ inputs.package_name }}
+        releaseFiles: ${{ inputs.aab_path }}
+        track: ${{ inputs.track }}
+        status: ${{ inputs.status }}
+        inAppUpdatePriority: ${{ inputs.update_priority }}

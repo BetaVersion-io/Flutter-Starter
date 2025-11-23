@@ -1,0 +1,100 @@
+# Authors & Contributors
+
+This file contains the list of people who have contributed to the BetaVersion mobile application.
+
+## Core Team
+
+### Project Leadership
+- **Project Lead**: [Name] - Overall project direction and architecture
+- **Technical Lead**: [Name] - Technical decisions and code review
+- **Product Manager**: [Name] - Product vision and requirements
+
+### Development Team
+
+#### Mobile Team
+- **Lead Mobile Developer**: [Name] - [@github-username]
+- **Senior Mobile Developer**: [Name] - [@github-username]
+- **Mobile Developer**: [Name] - [@github-username]
+- **Mobile Developer**: [Name] - [@github-username]
+
+#### Backend Team
+- **Backend Lead**: [Name] - API design and backend services
+- **Backend Developer**: [Name] - API implementation
+
+#### UI/UX Team
+- **UI/UX Lead**: [Name] - Design system and user experience
+- **UI/UX Designer**: [Name] - Visual design and prototypes
+
+#### QA Team
+- **QA Lead**: [Name] - Testing strategy and quality assurance
+- **QA Engineer**: [Name] - Manual and automated testing
+
+#### DevOps Team
+- **DevOps Lead**: [Name] - CI/CD and infrastructure
+- **DevOps Engineer**: [Name] - Deployment and monitoring
+
+## Contributors
+
+### Code Contributors
+<!-- Format: - Name [@github-username] - Brief description of contributions -->
+
+<!-- Add contributors here as they contribute -->
+
+### Special Thanks
+
+#### Advisors
+- [Name] - Technical Advisory
+- [Name] - Product Advisory
+
+#### Open Source Contributors
+We are grateful to all the open-source package authors whose work makes this project possible. See [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) for a complete list.
+
+## How to Get Added
+
+To be added to this list:
+1. Make meaningful contributions to the codebase
+2. Submit at least one merged pull request
+3. Contact the project maintainers or submit a PR updating this file
+
+## Contribution Types
+
+### Code Contributions
+- Feature implementation
+- Bug fixes
+- Performance improvements
+- Refactoring
+- Code reviews
+
+### Non-Code Contributions
+- Documentation
+- Design work
+- Testing
+- Bug reports
+- Feature suggestions
+- Community support
+
+## Recognition
+
+### Top Contributors (by commits)
+<!-- This section will be updated quarterly -->
+- [Name] - [Number] commits
+- [Name] - [Number] commits
+- [Name] - [Number] commits
+
+### Feature Champions
+<!-- People who led major feature development -->
+- **Question Bank System**: [Name]
+- **Test Engine**: [Name]
+- **Video Player**: [Name]
+- **Payment Integration**: [Name]
+- **Authentication System**: [Name]
+
+## Past Contributors
+
+<!-- List of people who have contributed in the past but are no longer active -->
+
+---
+
+**Note**: This file is maintained by the project maintainers. If you believe your contributions are not properly reflected, please reach out.
+
+**Last Updated**: November 2024

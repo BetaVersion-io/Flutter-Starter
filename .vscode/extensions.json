@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    // Flutter & Dart
+    "dart-code.flutter",
+    "dart-code.dart-code",
+
+    // Code Quality
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+
+    // Git
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+
+    // Utilities
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "aaron-bond.better-comments",
+    "PKief.material-icon-theme",
+
+    // Formatting & Linting
+    "esbenp.prettier-vscode",
+
+    // Testing
+    "kavod-io.vscode-jest-test-adapter",
+
+    // Documentation
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+
+    // Productivity
+    "christian-kohler.path-intellisense",
+    "visualstudioexptteam.vscodeintellicode",
+    "github.copilot"
+  ],
+  "unwantedRecommendations": []
+}

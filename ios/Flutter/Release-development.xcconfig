@@ -1,0 +1,5 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-development.xcconfig"
+#include "Generated.xcconfig"
+#include? "Environment.xcconfig"
+FLAVOR=development
+DART_DEFINES=$(inherited),RU5WSVJPTk1FTlQ9ZGV2ZWxvcG1lbnQ=

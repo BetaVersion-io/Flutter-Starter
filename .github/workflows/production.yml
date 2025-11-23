@@ -1,0 +1,26 @@
+name: Production Build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pipeline:
+    name: Production Pipeline
+    uses: ./.github/workflows/build-deploy-pipeline.yml
+    with:
+      build_staging: true
+      build_apk: true
+      build_aab: true
+      build_web: true
+      deploy_to_play_store: false
+      deploy_to_github_pages: false
+      create_github_release: true
+    secrets: inherit

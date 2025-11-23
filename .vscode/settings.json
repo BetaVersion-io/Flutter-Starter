@@ -1,0 +1,94 @@
+{
+  // Flutter & Dart settings
+  "dart.flutterSdkPath": null,
+  "dart.lineLength": 80,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "dart.openDevTools": "flutter",
+  "dart.hotReloadOnSave": "all",
+  "dart.showInspectorNotificationsForWidgetErrors": true,
+
+  // Editor settings
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.wordWrap": "on",
+  "editor.suggestSelection": "first",
+  "editor.inlineSuggest.enabled": true,
+
+  // Files settings
+  "files.associations": {
+    "*.dart": "dart"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.dart_tool": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/generated_plugin_registrant.dart": true,
+    "**/.idea": true,
+    "**/.metadata": true,
+    "**/android/.gradle": true,
+    "**/ios/Pods": true,
+    "**/ios/.symlinks": true,
+    "**/debug_info": true,
+    "**/debug-symbols": true,
+    "**/*.iml": true,
+    "**/keystore-base64.txt": true,
+    ".claude/**": true
+  },
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/.dart_tool/**": true
+  },
+
+  // Search settings
+  "search.exclude": {
+    "**/build": true,
+    "**/.dart_tool": true,
+    "**/generated_plugin_registrant.dart": true
+  },
+
+  // Git settings
+  "git.ignoreLimitWarning": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  // Explorer settings
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "pubspec.yaml": "pubspec.lock, .metadata, .flutter-plugins, .flutter-plugins-dependencies",
+    "*.dart": "${capture}.g.dart, ${capture}.freezed.dart, ${capture}.mocks.dart, ${capture}_test.dart",
+    ".env": ".env.*, .envrc, .env.development, .env.staging, .env.production",
+    "README.md": "LICENSE, CHANGELOG.md, CONTRIBUTING.md",
+    "android": "android/*, ios/*, web/*, windows/*, linux/*, macos/*",
+    "firebase.json": ".firebaserc, firebase_remote_config_strings.json, firebase_options.dart, .firebase/*",
+    "analysis_options.yaml": "dart_doc_options.yaml, devtools_options.yaml, dartdoc_options.yaml, melos.yaml"
+  },
+
+  // Extension settings
+  "emmet.includeLanguages": {
+    "dart": "html"
+  },
+
+  // Snippet settings
+  "editor.snippetSuggestions": "top",
+  "editor.suggest.snippetsPreventQuickSuggestions": false
+}
