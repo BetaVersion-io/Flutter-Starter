@@ -95,7 +95,7 @@ jobs:
     steps:
       # Checkout repository
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Setup Android environment
       - name: Setup Android Environment
