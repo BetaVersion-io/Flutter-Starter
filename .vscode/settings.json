@@ -74,9 +74,10 @@
   "explorer.compactFolders": false,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "pubspec.yaml": "pubspec.lock, .metadata, .flutter-plugins, .flutter-plugins-dependencies",
+    ".gitignore": ".gitattributes",
+    "pubspec.yaml": "pubspec.lock, .metadata, .flutter-plugins, .flutter-plugins-dependencies, splash.yaml, icons.yaml",
     "*.dart": "${capture}.g.dart, ${capture}.freezed.dart, ${capture}.mocks.dart, ${capture}_test.dart",
-    ".env": ".env.*, .envrc, .env.development, .env.staging, .env.production",
+    ".env": ".env.*, .envrc, .env.development, .env.staging, .env.production, .secrets, .secrets.example",
     "README.md": "LICENSE, CHANGELOG.md, CONTRIBUTING.md",
     "android": "android/*, ios/*, web/*, windows/*, linux/*, macos/*",
     "firebase.json": ".firebaserc, firebase_remote_config_strings.json, firebase_options.dart, .firebase/*",

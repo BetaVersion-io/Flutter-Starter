@@ -1,16 +1,67 @@
-# starter
+<p align="center">
+  <img src="assets/images/logos/logo.png" alt="BetaVersion Logo" width="120">
+</p>
 
-A new Flutter project.
+# BetaVersion Flutter Starter
+
+An enterprise-level Flutter starter project by [betaversion.io](https://betaversion.io).
+
+## Features
+
+- Multi-environment support (development, staging, production)
+- CI/CD pipelines with GitHub Actions
+- Native splash screen configuration
+- App icon generation for all platforms
+- Clean project structure
+- VS Code optimized settings and snippets
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK ^3.10.0
+- Dart SDK ^3.10.0
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+```
+
+### Running the App
+
+```bash
+# Development
+flutter run
+
+# Staging
+flutter run --flavor staging
+
+# Production
+flutter run --flavor production
+```
+
+### Generating Assets
+
+```bash
+# Generate app icons
+dart run flutter_launcher_icons -f icons.yaml
+
+# Generate splash screens
+dart run flutter_native_splash:create
+```
+
+## Project Structure
+
+```
+lib/
+├── main.dart          # App entry point
+assets/
+├── images/            # Image assets
+├── icons/             # Icon assets
+├── animations/        # Animation files
+```
+
+## License
+
+See [LICENSE](LICENSE) for details.

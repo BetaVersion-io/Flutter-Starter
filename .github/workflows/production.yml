@@ -2,8 +2,6 @@ name: Production Build
 
 on:
   push:
-    branches:
-      - main
     tags:
       - "v*"
   workflow_dispatch:
