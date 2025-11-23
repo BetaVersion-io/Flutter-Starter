@@ -56,7 +56,7 @@ jobs:
       # 2️⃣ Download Production APK (if enabled)
       - name: Download Production APK
         if: ${{ inputs.include_production_apk }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: production-release-apk
           path: artifacts/
@@ -65,7 +65,7 @@ jobs:
       # 3️⃣ Download Production AAB (if enabled)
       - name: Download Production AAB
         if: ${{ inputs.include_production_aab }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: production-release-aab
           path: artifacts/
@@ -74,7 +74,7 @@ jobs:
       # 4️⃣ Download Staging APK (if enabled)
       - name: Download Staging APK
         if: ${{ inputs.include_staging_apk }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: staging-release-apk
           path: artifacts/
@@ -83,7 +83,7 @@ jobs:
       # 5️⃣ Download Staging AAB (if enabled)
       - name: Download Staging AAB
         if: ${{ inputs.include_staging_aab }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: staging-release-aab
           path: artifacts/
