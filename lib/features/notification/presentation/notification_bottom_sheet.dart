@@ -16,8 +16,6 @@ class NotificationBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return ListView.separated(
       shrinkWrap: true,
       itemCount: 2,
@@ -79,13 +77,13 @@ class _NotificationItem extends StatelessWidget {
       subtitle: Text(
         subtitle,
         style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+          color: theme.textTheme.bodySmall?.color?.withAlpha(180),
         ),
       ),
       trailing: Text(
         time,
         style: theme.textTheme.labelSmall?.copyWith(
-          color: theme.textTheme.labelSmall?.color?.withOpacity(0.6),
+          color: theme.textTheme.labelSmall?.color?.withAlpha(150),
         ),
       ),
     );

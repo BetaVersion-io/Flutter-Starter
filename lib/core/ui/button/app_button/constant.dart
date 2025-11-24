@@ -2,7 +2,7 @@ part of 'app_button.dart';
 
 enum AppButtonVariant { text, outlined, contained }
 
-enum AppButtonSize { small, mediumSmall, medium, large }
+enum AppButtonSize { small, extrasmall, medium, large }
 
 enum AppButtonSeverity {
   regular,

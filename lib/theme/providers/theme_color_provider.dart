@@ -45,7 +45,7 @@ extension AppThemeColorExtension on AppThemeColor {
   Color get color {
     switch (this) {
       case AppThemeColor.neutral:
-        return const Color(0xFF1A1A1A);
+        return const Color.fromARGB(255, 24, 24, 24);
       case AppThemeColor.blue:
         return const Color(0xFF2563EB);
       case AppThemeColor.green:

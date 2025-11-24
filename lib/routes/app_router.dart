@@ -1,3 +1,4 @@
+import 'package:betaversion/routes/auth_router.dart';
 import 'package:betaversion/routes/main_router.dart';
 import 'package:betaversion/routes/profile_router.dart';
 import 'package:betaversion/services/navigation_service.dart';
@@ -8,6 +9,7 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     // GoRoute(name: RouteConstants.splash, path: '/'),
     mainRouter,
+    ...authRoutes,
     ...profileRoutes,
   ],
   debugLogDiagnostics: true,
