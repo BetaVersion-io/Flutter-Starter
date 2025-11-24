@@ -268,7 +268,6 @@ class BaseStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final grey500 = Colors.grey.shade500;
-    final grey700 = Colors.grey.shade700;
 
     return Column(
       mainAxisAlignment: mainAxisAlignment,

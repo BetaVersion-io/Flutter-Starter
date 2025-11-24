@@ -36,19 +36,10 @@ import 'package:betaversion/services/network/interceptors/auth_interceptor.dart'
 import 'package:betaversion/services/network/interceptors/force_update_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-/// The base API URL from environment configuration.
-/// This URL is loaded from the environment configuration and represents
-/// the root endpoint for all API calls.
-final apiUrl = EnvConfig.apiBaseUrl;
-
-/// The API version string from environment configuration.
-/// This version string is appended to the base URL to form the complete API endpoint.
-final apiVersion = EnvConfig.apiVersion;
-
 /// The complete base API URL combining base URL and version.
 /// This is the final URL that will be used as the base for all API requests.
-/// It is constructed by resolving the API version against the base URL.
-final baseApiUrl = Uri.parse(apiUrl).resolve(apiVersion).toString();
+/// Format: {apiBaseUrl}/{apiVersion} (e.g., https://api.example.com/v1)
+final baseApiUrl = EnvConfig.fullApiUrl;
 
 /// Riverpod provider for the configured Dio HTTP client.
 ///

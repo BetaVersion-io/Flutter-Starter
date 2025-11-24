@@ -36,7 +36,7 @@ class AppIconButton extends StatelessWidget {
         return 24;
       case AppButtonSize.large:
         return 26;
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return 21;
     }
   }
@@ -49,7 +49,7 @@ class AppIconButton extends StatelessWidget {
         return 40;
       case AppButtonSize.large:
         return 48;
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return 36;
     }
   }

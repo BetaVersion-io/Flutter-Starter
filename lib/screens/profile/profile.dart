@@ -35,9 +35,7 @@ class ProfileScreen extends HookConsumerWidget {
                   Text(
                     'satyam@betaversion.io',
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.textTheme.bodyMedium?.color?.withOpacity(
-                        0.6,
-                      ),
+                      color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
                     ),
                   ),
                 ],

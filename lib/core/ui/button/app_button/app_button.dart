@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:betaversion/theme/constants/colors.dart';
 import 'package:betaversion/theme/extensions/extension.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 part 'app_icon_button.dart';
 part 'constant.dart';
@@ -138,7 +138,7 @@ class AppButton extends StatelessWidget {
         return const EdgeInsets.symmetric(horizontal: 18, vertical: 12);
       case AppButtonSize.large:
         return const EdgeInsets.symmetric(horizontal: 20, vertical: 14);
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return const EdgeInsets.symmetric(horizontal: 10, vertical: 12);
     }
   }
@@ -151,7 +151,7 @@ class AppButton extends StatelessWidget {
         return 16;
       case AppButtonSize.large:
         return 16;
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return 14;
     }
   }
@@ -165,7 +165,7 @@ class AppButton extends StatelessWidget {
         return 18;
       case AppButtonSize.large:
         return 20;
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return 17;
     }
   }
@@ -178,7 +178,7 @@ class AppButton extends StatelessWidget {
         return 16;
       case AppButtonSize.large:
         return 18;
-      case AppButtonSize.mediumSmall:
+      case AppButtonSize.extrasmall:
         return 15;
     }
   }
@@ -314,10 +314,12 @@ class AppButton extends StatelessWidget {
 
     if (width != null) {
       finalButton = SizedBox(width: width, height: height, child: finalButton);
-    }
-
-    if (expanded) {
-      finalButton = Expanded(child: finalButton);
+    } else if (expanded) {
+      finalButton = SizedBox(
+        width: double.infinity,
+        height: height,
+        child: finalButton,
+      );
     }
 
     if (margin != null) {
