@@ -1,5 +1,6 @@
 import 'package:betaversion/core/ui/avatar/profile_avatar.dart';
 import 'package:betaversion/core/ui/button/app_button/app_button.dart';
+import 'package:betaversion/features/notification/presentation/notification_bottom_sheet.dart';
 import 'package:betaversion/routes/constants/route_constants.dart';
 import 'package:betaversion/theme/extensions/extension.dart';
 import 'package:flutter/material.dart';
@@ -7,18 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeHeader extends StatelessWidget {
-  final String userName;
-  final String? userAvatar;
-  final int notificationCount;
-  final VoidCallback? onNotificationTap;
-
-  const HomeHeader({
-    super.key,
-    required this.userName,
-    this.userAvatar,
-    this.notificationCount = 0,
-    this.onNotificationTap,
-  });
+  const HomeHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +30,7 @@ class HomeHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                userName,
+                'Satyam',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -49,12 +39,11 @@ class HomeHeader extends StatelessWidget {
           ),
         ),
         Badge(
-          isLabelVisible: notificationCount > 0,
           offset: const Offset(-5, 4),
-          label: Text('$notificationCount'),
+          label: const Text('2'),
           child: AppIconButton(
             icon: Iconsax.notification,
-            onPressed: onNotificationTap,
+            onPressed: () => NotificationBottomSheet.show(context),
           ),
         ),
       ],

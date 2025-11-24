@@ -23,11 +23,7 @@ class AuthHeader extends StatelessWidget {
     return Column(
       children: [
         if (icon != null) ...[
-          Icon(
-            icon,
-            size: iconSize,
-            color: theme.colorScheme.primary,
-          ),
+          Icon(icon, size: iconSize, color: theme.colorScheme.primary),
           const Gap(24),
         ],
         Text(

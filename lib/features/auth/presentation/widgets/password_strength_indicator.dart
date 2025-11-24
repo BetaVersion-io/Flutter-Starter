@@ -18,9 +18,9 @@ class PasswordStrengthIndicator extends StatelessWidget {
 
     int score = 0;
     if (password.length >= 8) score++;
-    if (password.contains(RegExp(r'[A-Z]'))) score++;
-    if (password.contains(RegExp(r'[a-z]'))) score++;
-    if (password.contains(RegExp(r'[0-9]'))) score++;
+    if (password.contains(RegExp('[A-Z]'))) score++;
+    if (password.contains(RegExp('[a-z]'))) score++;
+    if (password.contains(RegExp('[0-9]'))) score++;
     if (password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) score++;
 
     if (score <= 2) return PasswordStrength.weak;
@@ -76,13 +76,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
   }
 }
 
-enum PasswordStrength {
-  none,
-  weak,
-  medium,
-  strong,
-  veryStrong,
-}
+enum PasswordStrength { none, weak, medium, strong, veryStrong }
 
 extension PasswordStrengthExtension on PasswordStrength {
   String get label {
@@ -118,7 +112,7 @@ extension PasswordStrengthExtension on PasswordStrength {
   double get progress {
     switch (this) {
       case PasswordStrength.none:
-        return 0.0;
+        return 0;
       case PasswordStrength.weak:
         return 0.25;
       case PasswordStrength.medium:
@@ -126,7 +120,7 @@ extension PasswordStrengthExtension on PasswordStrength {
       case PasswordStrength.strong:
         return 0.75;
       case PasswordStrength.veryStrong:
-        return 1.0;
+        return 1;
     }
   }
 }
