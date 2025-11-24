@@ -1,14 +1,17 @@
 import 'package:betaversion/core/form/hook_form.dart';
+import 'package:betaversion/core/input/password_field.dart';
 import 'package:betaversion/core/input/text_field.dart';
 import 'package:betaversion/core/layout/app_scaffold/app_scaffold.dart';
+import 'package:betaversion/core/ui/button/app_button/app_button.dart';
+import 'package:betaversion/core/ui/icons/app_icon.dart';
 import 'package:betaversion/features/auth/domain/models/register_request.dart';
 import 'package:betaversion/features/auth/providers/auth_providers.dart';
 import 'package:betaversion/hooks/form/use_form_mutation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 /// Register screen for user registration
 class RegisterScreen extends HookConsumerWidget {
@@ -16,8 +19,6 @@ class RegisterScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final obscurePassword = useState(true);
-    final obscureConfirmPassword = useState(true);
     final authRepository = ref.watch(authRepositoryProvider);
     final theme = Theme.of(context);
 
@@ -26,28 +27,20 @@ class RegisterScreen extends HookConsumerWidget {
       defaultValues: {
         'name': '',
         'email': '',
-        'phone_number': '',
         'password': '',
         'confirm_password': '',
-        'accept_terms': false,
       },
       transformVariables: (formData) => RegisterRequest(
+        name: formData['name'] as String,
         email: formData['email'] as String,
         password: formData['password'] as String,
-        name: (formData['name'] as String?)?.isNotEmpty ?? false
-            ? formData['name'] as String?
-            : null,
-        phoneNumber: (formData['phone_number'] as String?)?.isNotEmpty ?? false
-            ? formData['phone_number'] as String?
-            : null,
       ),
       mutationFn: authRepository.register,
       successMessage: 'Registration successful!',
       errorMessage: 'Failed to register. Please try again.',
     );
 
-    return AppScaffold(
-      appBar: AppBar(title: const Text('Create Account')),
+    return AppScaffold.gradient(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: HookForm(
@@ -55,6 +48,10 @@ class RegisterScreen extends HookConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Gap(40),
+
+              // App Logo or Title
+              const AppIcon(size: 60),
               const Gap(24),
 
               // Welcome Text
@@ -73,18 +70,21 @@ class RegisterScreen extends HookConsumerWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Gap(40),
+              const Gap(48),
 
-              // Name Field (Optional)
+              // Name Field (Required)
               InputTextField(
                 name: 'name',
-                label: 'Full Name (Optional)',
+                label: 'Full Name',
                 hintText: 'Enter your full name',
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.person_outlined,
+                prefixIcon: Iconsax.profile_2user,
                 enabled: !formMutation.isSubmitting,
                 textCapitalization: TextCapitalization.words,
+                validators: [
+                  FormBuilderValidators.required(errorText: 'Name is required'),
+                ],
               ),
               const Gap(16),
 
@@ -95,7 +95,7 @@ class RegisterScreen extends HookConsumerWidget {
                 hintText: 'Enter your email',
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.email_outlined,
+                prefixIcon: Iconsax.card,
                 enabled: !formMutation.isSubmitting,
                 validators: [
                   FormBuilderValidators.required(
@@ -108,42 +108,11 @@ class RegisterScreen extends HookConsumerWidget {
               ),
               const Gap(16),
 
-              // Phone Number Field (Optional)
-              InputTextField(
-                name: 'phone_number',
-                label: 'Phone Number (Optional)',
-                hintText: 'Enter your phone number',
-                keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.next,
-                prefixIcon: Icons.phone_outlined,
-                enabled: !formMutation.isSubmitting,
-                validators: [
-                  FormBuilderValidators.numeric(
-                    errorText: 'Please enter a valid phone number',
-                  ),
-                ],
-              ),
-              const Gap(16),
-
               // Password Field
-              InputTextField(
+              InputPasswordField(
                 name: 'password',
-                label: 'Password',
-                hintText: 'Enter your password',
-                obscureText: obscurePassword.value,
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.lock_outlined,
                 enabled: !formMutation.isSubmitting,
-                suffix: IconButton(
-                  icon: Icon(
-                    obscurePassword.value
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                  ),
-                  onPressed: () {
-                    obscurePassword.value = !obscurePassword.value;
-                  },
-                ),
                 validators: [
                   FormBuilderValidators.required(
                     errorText: 'Password is required',
@@ -167,25 +136,11 @@ class RegisterScreen extends HookConsumerWidget {
               const Gap(16),
 
               // Confirm Password Field
-              InputTextField(
+              InputPasswordField(
                 name: 'confirm_password',
                 label: 'Confirm Password',
                 hintText: 'Re-enter your password',
-                obscureText: obscureConfirmPassword.value,
-                textInputAction: TextInputAction.done,
-                prefixIcon: Icons.lock_outlined,
                 enabled: !formMutation.isSubmitting,
-                suffix: IconButton(
-                  icon: Icon(
-                    obscureConfirmPassword.value
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                  ),
-                  onPressed: () {
-                    obscureConfirmPassword.value =
-                        !obscureConfirmPassword.value;
-                  },
-                ),
                 validators: [
                   FormBuilderValidators.required(
                     errorText: 'Please confirm your password',
@@ -199,52 +154,53 @@ class RegisterScreen extends HookConsumerWidget {
                   },
                 ],
               ),
-              const Gap(16),
-
-              // Terms & Conditions Checkbox
-              // InputTextField(
-              //   name: 'accept_terms',
-              //   label: 'I agree to the Terms & Conditions and Privacy Policy',
-              //   enabled: !formMutation.isSubmitting,
-              //   validators: [
-              //     FormBuilderValidators.equal(
-              //       true,
-              //       errorText: 'You must accept the terms and conditions',
-              //     ),
-              //   ],
-              // ),
-              const Gap(32),
+              const Gap(24),
 
               // Register Button using form submit button
               formMutation.form.submitButton(
                 text: 'Create Account',
                 expanded: true,
               ),
-              const Gap(24),
+              const Gap(16),
 
-              // Already have account
+              // Divider
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Already have an account? ',
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  TextButton(
-                    onPressed: formMutation.isSubmitting
-                        ? null
-                        : () {
-                            Navigator.of(context).pop();
-                          },
+                  const Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      'Login',
+                      'OR',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.6,
+                        ),
                       ),
                     ),
                   ),
+                  const Expanded(child: Divider()),
                 ],
+              ),
+              const Gap(16),
+
+              // Login Button
+              AppButton(
+                text: 'Already have an account?',
+                disabled: formMutation.isSubmitting,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                variant: AppButtonVariant.text,
+              ),
+              const Gap(24),
+
+              // Terms & Privacy
+              Text(
+                'By continuing, you agree to our Terms of Service and Privacy Policy',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

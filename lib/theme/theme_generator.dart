@@ -59,17 +59,20 @@ ThemeData generateLightTheme(AppThemeColor themeColor) {
 /// Generates dark theme with the given primary color
 ThemeData generateDarkTheme(AppThemeColor themeColor) {
   final primaryColor = themeColor.lightVariant;
+  final isNeutral = themeColor == AppThemeColor.neutral;
 
   return darkAppTheme.copyWith(
     primaryColor: primaryColor,
     colorScheme: darkAppTheme.colorScheme.copyWith(
       primary: primaryColor,
+      onPrimary: isNeutral ? Colors.black : null,
       primaryContainer: primaryColor.withAlpha(51),
       onPrimaryContainer: primaryColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: darkAppTheme.elevatedButtonTheme.style?.copyWith(
         backgroundColor: WidgetStatePropertyAll(primaryColor),
+        foregroundColor: isNeutral ? const WidgetStatePropertyAll(Colors.black) : null,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -98,6 +101,7 @@ ThemeData generateDarkTheme(AppThemeColor themeColor) {
     ),
     floatingActionButtonTheme: darkAppTheme.floatingActionButtonTheme.copyWith(
       backgroundColor: primaryColor,
+      foregroundColor: isNeutral ? Colors.black : null,
     ),
     bottomNavigationBarTheme: darkAppTheme.bottomNavigationBarTheme.copyWith(
       selectedItemColor: primaryColor,

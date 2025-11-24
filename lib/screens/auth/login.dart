@@ -1,4 +1,5 @@
 import 'package:betaversion/core/form/hook_form.dart';
+import 'package:betaversion/core/input/password_field.dart';
 import 'package:betaversion/core/input/text_field.dart';
 import 'package:betaversion/core/layout/app_scaffold/app_scaffold.dart';
 import 'package:betaversion/core/ui/button/app_button/app_button.dart';
@@ -7,10 +8,10 @@ import 'package:betaversion/features/auth/domain/models/login_request.dart';
 import 'package:betaversion/features/auth/providers/auth_providers.dart';
 import 'package:betaversion/hooks/form/use_form_mutation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 /// Login screen for user authentication
 class LoginScreen extends HookConsumerWidget {
@@ -18,7 +19,6 @@ class LoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final obscurePassword = useState(true);
     final authRepository = ref.watch(authRepositoryProvider);
     final theme = Theme.of(context);
 
@@ -74,7 +74,7 @@ class LoginScreen extends HookConsumerWidget {
                 hintText: 'Enter your email',
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.email_outlined,
+                prefixIcon: Iconsax.card,
                 enabled: !formMutation.isSubmitting,
                 validators: [
                   FormBuilderValidators.required(
@@ -88,24 +88,9 @@ class LoginScreen extends HookConsumerWidget {
               const Gap(16),
 
               // Password Field
-              InputTextField(
+              InputPasswordField(
                 name: 'password',
-                label: 'Password',
-                hintText: 'Enter your password',
-                obscureText: obscurePassword.value,
-                textInputAction: TextInputAction.done,
-                prefixIcon: Icons.lock_outlined,
                 enabled: !formMutation.isSubmitting,
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    obscurePassword.value
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                  ),
-                  onPressed: () {
-                    obscurePassword.value = !obscurePassword.value;
-                  },
-                ),
                 validators: [
                   FormBuilderValidators.required(
                     errorText: 'Password is required',
